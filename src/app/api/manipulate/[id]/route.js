@@ -31,3 +31,42 @@ export async function DELETE(req, { params }) {
         return NextResponse.json({ message: "Error deleting item" }, { status: 500 });
     }
 }
+
+
+
+export async function PATCH(req,{params}){
+    try {
+   
+
+        const client = await clientPromise;
+        const db = client.db("mydatabase");
+        const collection = db.collection("all-tasks");
+
+        const {id} =params;
+
+        if (!id || !ObjectId.isValid(id)) {
+            return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
+        }
+
+        const { task } = await req.json();
+        if (!task) {
+            return NextResponse.json({ error: "Task is required" }, { status: 400 });
+        }
+
+        const query = { _id: new ObjectId(id) };
+
+        const updatedItem = await collection.updateOne(query, { $set: { 
+            task: task
+         } });
+
+
+        if (updatedItem.modifiedCount === 0) {
+            return NextResponse.json({ error: "Item not updated and found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ message: "Item updated successfully" }, { status: 200 });
+
+    }catch (error) {
+        console.error("Error editing task:", error);
+    }
+}

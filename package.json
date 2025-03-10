@@ -14,7 +14,8 @@
     "mongodb": "^6.14.2",
     "next": "15.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sweetalert2": "^11.17.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
