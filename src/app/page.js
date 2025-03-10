@@ -39,6 +39,19 @@ export default function Home() {
         }
     };
 
+
+
+    const deleteTask = async (id) => {
+      try{
+      const result = await axios.delete(`/api/manipulate/${id}`);
+      refetch();
+      console.log(result);
+      }
+      catch(err){
+        console.error("Error deleting task:", err);
+      }
+    }
+
     return (
         <div className="flex flex-col items-center min-h-screen mt-10 gap-8">
             <p>Task Management Application</p>
@@ -57,7 +70,7 @@ export default function Home() {
     <div className="flex justify-between">
     <h2 className="text-3xl font-bold">{task.task}</h2>
       <button className="btn btn-success">Edit</button>
-      <button className="btn btn-error">Delete</button>
+      <button className="btn btn-error" onClick={() => deleteTask(task._id)}>Delete</button>
     </div>
     <ul className="mt-6 flex flex-col gap-2 text-xs">
       <li>
@@ -69,7 +82,13 @@ export default function Home() {
     
   </div>
   </div>
-)) : <div>No tasks available</div>}
+)) : <div>
+<span className="loading loading-bars loading-xl"></span>
+<span className="loading loading-bars loading-xl"></span>
+<span className="loading loading-bars loading-xl"></span>
+<span className="loading loading-bars loading-xl"></span>
+<span className="loading loading-bars loading-xl"></span>
+</div>}
 </div>
 
 
