@@ -102,8 +102,8 @@ export default function Home() {
   
 
     return (
-        <div className="flex flex-col items-center min-h-screen mt-10 gap-8">
-            <p>Task Management Application</p>
+        <div className="flex flex-col items-center min-h-screen mt-10 gap-8 ">
+            <p>Schedule Management Application</p>
 
             <form className="flex gap-x-4 w-[400px]" onSubmit={addTask}>
                 <input type="text" placeholder="Add task" name="task" className="input input-primary " />
@@ -113,7 +113,7 @@ export default function Home() {
 
             <div className="grid grid-cols-2 gap-4">
             {items.length > 0 ? items.map((task) => (
-            <div key={task._id}  className="card w-96 bg-base-100 shadow-sm">
+            <div key={task._id}  className="card w-96 bg-gray-300 shadow-sm">
   <div className="card-body">
     <span className="badge badge-xs badge-warning">Most Popular</span>
     <div className="flex justify-between">
